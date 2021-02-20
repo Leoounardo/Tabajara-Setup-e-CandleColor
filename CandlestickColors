@@ -1,0 +1,24 @@
+//REGRA DE COLORAÇÃO CRIADA PELO ANDRE MACHADO, O OGRO DE WALL STREET
+//EU APENAS "REESCREVI EM CODIGOS", PROFITCHART
+//INSTA DO OGRO: @ogrowallst
+//MEU INSTA: @leoounardoo
+
+//CANDLE POSITIVO ACIMA DA MMA20: VERDE
+//CANDLE NEGATIVO ACIMA DA MMA20: PRETO
+//CANDLE POSITIVO ABAIXO DA MMA20: BRANCO
+//CANDLE NEGATIVO ABAIXO DA MMA20: VERMELHO
+var
+  candval : boolean;
+  m20 : float;
+
+begin
+  m20 := media(20, close);
+  candval := (close > open);
+
+  if(candval) and (open < m20)then 
+    begin
+      paintbar(clwhite);                   
+    end
+  else if not (candval) and (open > m20)then
+    Paintbar(clblack);        
+end;
