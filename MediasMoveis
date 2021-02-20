@@ -1,0 +1,50 @@
+  
+//REGRA DE COLORAÇÃO CRIADA PELO ANDRE MACHADO, O OGRO DE WALL STREET
+//EU APENAS "REESCREVI EM CODIGOS", PROFITCHART
+//INSTA DO OGRO: @ogrowallst
+//MEU INSTA: @leoounardoo
+
+//ESTE INDICADOR COLOCA NO GRAFICO
+//A VWAP, MMA20 APÓS AS 10:40, TEMPO GRAFICO DE 5 MINUTOS
+//E A MMA200
+
+input
+  expm20(2);
+
+  expVWAP(2);
+  corvwap(clpurple);
+
+
+var
+  m200, m20, nvwap : float;
+
+begin
+  
+  //CONFIG VWAP
+  nvwap := VWAP(1);
+  if (time < 1825) then plot2(nvwap);
+  setplotcolor(2, corVWAP);
+  setplotwidth(2, expVWAP);
+  
+  //CONFIG MMA200
+  m200 := media(200, close);
+  plot3(m200);
+  setplotwidth(3, 2);
+  setplotcolor(3, clwhite);
+
+  //CONFIG MMA20 COLORIDA
+  m20 := media(20, close);
+  if(time > 1040)then
+    begin
+      plot(m20);
+      setplotwidth(1, expm20);
+    
+      if(open > m20) and (close > m20)then
+        begin
+          setplotcolor(1, clgreen);
+        end
+      else if(open < m20) and (close < m20)then 
+          setplotcolor(1, clred);
+
+    end;
+end;
